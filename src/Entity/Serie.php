@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\SerieRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -29,6 +31,16 @@ class Serie
      */
     private $image;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Saison::class, mappedBy="serie", orphanRemoval=true)
+     */
+    private $saisons;
+
+    public function __construct()
+    {
+        $this->saisons = new ArrayCollection();
+    }
+
     public function getId(): ?int
     {
         return $this->id;
@@ -54,6 +66,36 @@ class Serie
     public function setImage(?string $image): self
     {
         $this->image = $image;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Saison[]
+     */
+    public function getSaisons(): Collection
+    {
+        return $this->saisons;
+    }
+
+    public function addSaison(Saison $saison): self
+    {
+        if (!$this->saisons->contains($saison)) {
+            $this->saisons[] = $saison;
+            $saison->setSerie($this);
+        }
+
+        return $this;
+    }
+
+    public function removeSaison(Saison $saison): self
+    {
+        if ($this->saisons->removeElement($saison)) {
+            // set the owning side to null (unless already changed)
+            if ($saison->getSerie() === $this) {
+                $saison->setSerie(null);
+            }
+        }
 
         return $this;
     }

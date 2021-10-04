@@ -5,7 +5,9 @@
 {% block body %}
     <div class="series-list">
         {% for serie in liste %}
-            <img src="{{ asset('img/posters/series/'~serie.image) }}" alt="">
+            <img src="{{ asset('img/posters/series/'~serie.image) }}"
+                 alt=""
+            title="{{ serie.saisons | length }} saisons">
         {% endfor %}
     </div>
 {% endblock %}
