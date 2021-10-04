@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Salut{% endblock %}</title>
+    {% block stylesheets %}
+        <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/normalize.css') }}">
+    {% endblock %}
+
+    {% block javascripts %}
+    {% endblock %}
+</head>
+<body>
+<nav>
+    <header>
+        <img src="{{ asset('logo.svg') }}" alt="logo">
+    </header>
+    <ul>
+        <li><a href="{{ path('serie_index') }}">Liste des series</a></li>
+        <li><a href="{{ path('serie_ajouter') }}">Ajouter une serie</a></li>
+    </ul>
+</nav>
+{% block body %}{% endblock %}
+</body>
+</html>

@@ -1,0 +1,9 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des series{% endblock %}
+
+{% block body %}
+    {% for serie in liste %}
+        <img src="{{ asset('img/posters/series/'~serie.image) }}" alt="">
+    {% endfor %}
+{% endblock %}
