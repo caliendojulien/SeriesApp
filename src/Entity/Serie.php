@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\SerieRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=SerieRepository::class)
@@ -18,6 +19,7 @@ class Serie
     private $id;
 
     /**
+     * @Assert\Length(min="2", max="50", minMessage="Au moins 2 svp.")
      * @ORM\Column(type="string", length=50)
      */
     private $nom;

@@ -21,6 +21,16 @@
         <li><a href="{{ path('serie_ajouter') }}">Ajouter une serie</a></li>
     </ul>
 </nav>
-{% block body %}{% endblock %}
+{# read and display all flash messages #}
+{% for label, messages in app.flashes %}
+    {% for message in messages %}
+        <div class="flash-{{ label }}">
+            {{ message }}
+        </div>
+    {% endfor %}
+{% endfor %}
+<div class="container">
+    {% block body %}{% endblock %}
+</div>
 </body>
 </html>
