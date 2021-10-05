@@ -21,8 +21,8 @@ class Serie
     private $id;
 
     /**
-     * @Assert\Length(min="2", max="50", minMessage="Au moins 2 svp.")
-     * @ORM\Column(type="string", length=50)
+     * @Assert\Length(min="2", max="255", minMessage="Au moins 2 svp.")
+     * @ORM\Column(type="string", length=255)
      */
     private $nom;
 

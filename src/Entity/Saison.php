@@ -28,7 +28,7 @@ class Saison
     private $image;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Serie::class, inversedBy="saisons")
+     * @ORM\ManyToOne(targetEntity=Serie::class, inversedBy="saisons", cascade={"persist"})
      * @ORM\JoinColumn(nullable=false)
      */
     private $serie;

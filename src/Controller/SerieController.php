@@ -19,7 +19,8 @@ class SerieController extends AbstractController
      */
     public function index(SerieRepository $repository): Response
     {
-        $liste = $repository->findAll();
+        // $liste = $repository->findAll();
+        $liste = $repository->findAllAvecJointure();
         return $this->render('serie/index.html.twig',
             compact("liste")
         );

@@ -19,6 +19,17 @@ class SerieRepository extends ServiceEntityRepository
         parent::__construct($registry, Serie::class);
     }
 
+    public function findAllAvecJointure()
+    {
+        return $this->createQueryBuilder('s')
+            ->leftJoin('s.saisons', 'lesSaisons')
+            ->addSelect('lesSaisons')
+            ->setMaxResults(50)
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+
     // /**
     //  * @return Serie[] Returns an array of Serie objects
     //  */
