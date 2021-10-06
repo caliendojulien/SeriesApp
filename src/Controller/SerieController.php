@@ -6,6 +6,7 @@ use App\Entity\Serie;
 use App\Form\SerieType;
 use App\Repository\SerieRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -37,6 +38,7 @@ class SerieController extends AbstractController
     }
 
     /**
+     * @IsGranted("ROLE_ADMIN")
      * @Route("/ajouter", name="serie_ajouter")
      */
     public function ajouter(
