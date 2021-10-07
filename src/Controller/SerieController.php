@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Serie;
 use App\Form\SerieType;
 use App\Repository\SerieRepository;
+use App\Services\AppService;
 use Doctrine\ORM\EntityManagerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -18,9 +19,15 @@ class SerieController extends AbstractController
     /**
      * @Route("/", name="serie_index")
      */
-    public function index(SerieRepository $repository): Response
+    public function index(
+        SerieRepository $repository,
+        AppService      $monService
+    ): Response
     {
         // $liste = $repository->findAll();
+
+        $monService->ecritDansUnFichier("Je suis sur la page d'accueil des series");
+
         $liste = $repository->findAllAvecJointure();
         return $this->render('serie/index.html.twig',
             compact("liste")
